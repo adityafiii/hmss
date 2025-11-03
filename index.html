@@ -168,6 +168,10 @@
             border-radius: 0;
             box-shadow: none;
         }
+        .full-screen-loader.gone {
+            pointer-events: none; /* Ini yang membuat mouse/jari bisa menembus! */
+            z-index: -1; /* Menjamin ia berada di bawah halaman lain */
+        }
 
         /* Style untuk Animasi Putar */
         .loader {
@@ -446,6 +450,7 @@
 </body>
 
 </html>
+
 
 
 
