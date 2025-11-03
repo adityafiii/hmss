@@ -257,7 +257,7 @@
         <div id="slideshow-container">
             </div>
         
-        <p class="large-text" style="margin-top: 30px;">Sekali lagi, Selamat Ulang Tahun Yaaaa, Kesayanganku</p>
+        <p class="medium-text" style="margin-top: 30px;">Sekali lagi, Selamat Ulang Tahun Yaaaa, Kesayanganku</p>
         <p class="large-text" style="margin-top: 30px;">MWUAHH MWUAHH MWUAHH</p>
     </div>
 
@@ -352,13 +352,23 @@
         let index = 0;
         const charsPerStep = 1; // Jumlah karakter yang muncul per langkah
         const intervalTime = 0; // Waktu interval (0.5 detik)
+        const typingContainer = document.getElementById('typing-container');
 
         function typeWriter() {
             if (index < message.length) {
                 const end = Math.min(index + charsPerStep, message.length);
                 
-                // KEMBALI MENGGUNAKAN textContent (lebih aman dan bersih)
-                typedMessageElement.textContent += message.substring(index, end); 
+                // 1. Tambahkan Teks Baru
+                typedMessageElement.textContent += message.substring(index, end);
+                
+                // 2. LOGIKA AUTO-SCROLL BARU
+                // Hitung seberapa jauh halaman harus di-scroll.
+                // Scroll ke bawah berdasarkan posisi bawah kontainer ketikan di viewport.
+                window.scrollTo({
+                    // Scroll ke posisi Y saat ini ditambah tinggi yang dibutuhkan
+                    top: window.scrollY + typingContainer.offsetHeight, 
+                    behavior: 'smooth' // Membuat scroll bergerak halus
+                });
                 
                 index = end;
                 setTimeout(typeWriter, intervalTime);
@@ -366,7 +376,6 @@
                 toPage5Btn.classList.remove('hidden');
             }
         }
-
         function startTypingEffect() {
             // KEMBALI MENGGUNAKAN textContent
             typedMessageElement.textContent = ''; // Kosongkan
@@ -438,6 +447,8 @@
             pages.forEach(p => p.classList.add('hidden'));
             pages[pageNumber - 1].classList.remove('hidden');
             currentPage = pageNumber;
+
+            window.scrollTo(0, 0);
             
             if (pageNumber === 4) {
                 startTypingEffect();
@@ -450,8 +461,6 @@
 </body>
 
 </html>
-
-
 
 
 
