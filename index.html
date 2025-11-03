@@ -210,6 +210,7 @@
         <div class="loader">
             <span id="countdown-number">10</span> </div>
         <p class="medium-text" style="margin-top: 50px;">Haloo, Selamat Datang Sayanggg</p>
+        <p class="medium-text" style="margin-top: 50px;">Tunggu Yaaaa</p>
     </div>
     <audio autoplay loop id="background-music">
         <source src="Jamrud - Selamat Ulang Tahun (lyrics).mp3" type="audio/mp3">
@@ -279,7 +280,7 @@
 
             const countdownInterval = setInterval(() => {
                 countdown--;
-                if (countdown >= 1) {
+                if (countdown >= 0) {
                     countdownElement.textContent = countdown;
                 } else {
                     clearInterval(countdownInterval);
@@ -446,6 +447,7 @@
 </body>
 
 </html>
+
 
 
 
